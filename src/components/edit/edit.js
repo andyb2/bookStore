@@ -1,69 +1,44 @@
-import { useState } from "react"
+import { connect } from "react-redux"
+import { editBookStore } from "../../store/thunkCreators"
+
 const Edit = (props) => {
-    const { editBook } = props
-    const { title } = editBook
-
-    const [userInput, setUserInput] = useState(editBook)
-    const [updateBook, setUpdateBook] = useState()
-    // console.log(userInput)
-    const handleChange = (e) => {
-        // userInput.title = e.target.value
-        // console.log(e.target.id)
-        // e.target.i
-        // const newTitle = e.target.title.value
-        // const newCat = e.target.category.value
-        // const newPrice = e.target.price.value
-
-        // console.log(e.target.title)
-
-
-
-    }
-
-    const saveBook = () => {
-        const bookEdit = {
-            id: editBook.id,
-            title: e.target.title.value,
-            category: e.target.category.value,
-            price: e.target.price.value
-        }
-
-    }
+    const { setShowEdit, currentBook } = props.editBook;
 
     const saveBookInfo = async (e) => {
         e.preventDefault();
         const bookEdit = {
-            id: editBook.id,
+            id: currentBook.id,
             title: e.target.title.value,
             category: e.target.category.value,
             price: e.target.price.value
         }
-        await editBookStore(bookEdit)
+        await props.editBookStore(bookEdit)
+        setShowEdit(false)
     }
+
     return (
         <div>
-            <form onSubmit={saveBookInfo}>
-                <textarea
-                    name='title'
-                    type='text'
-                    defaultValue={userInput.title}
-                    onChange={handleChange}
-                ></textarea>
-                <textarea
-                    name='category'
-                    type='text'
-                    defaultValue={userInput.category}
-                    onChange={handleChange}
-                ></textarea>
-                <textarea
-                    name='price'
-                    type='text'
-                    defaultValue={userInput.price}
-                    onChange={handleChange}
-                ></textarea>
+            {currentBook && (
+                <form onSubmit={saveBookInfo}>
+                    <textarea
+                        name='title'
+                        type='text'
+                        defaultValue={currentBook.title}
+                    ></textarea>
+                    <textarea
+                        name='category'
+                        type='text'
+                        defaultValue={currentBook.category}
+                    ></textarea>
+                    <textarea
+                        name='price'
+                        type='text'
+                        defaultValue={currentBook.price}
+                    ></textarea>
 
-                <button type="submit">save</button>
-            </form>
+                    <button type="submit">save</button>
+                </form>
+            )}
         </div>
     )
 }
@@ -71,9 +46,8 @@ const Edit = (props) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         editBookStore: (bookUpdate) => {
-            dipatch(editBookStore(bookUpdate))
+            dispatch(editBookStore(bookUpdate))
         }
-
     }
 }
 export default connect(null, mapDispatchToProps)(Edit);

@@ -1,66 +1,71 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { connect } from "react-redux";
 import Edit from "../edit/edit";
-const Books = () => {
-    const booksList = [
-        {
-            id: '1',
-            title: "Harry Potter and the Philosopher's Stone",
-            price: "15.00",
-            category: "Fantasy",
-            Description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit."
-        },
-        {
-            id: '2',
-            title: "Hyperspace",
-            price: "22.00",
-            category: "Science",
-            description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit."
-        },
-        {
-            id: '3',
-            title: "Test",
-            price: "22.00",
-            category: "Science",
-            description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit."
-        }
-    ]
-    const [books, setBooks] = useState(booksList);
-    const [showEdit, setShowEdit] = useState(false)
-    const [currentBook, setCurrentBook] = useState()
+import { deleteBooks, editSelectedBook } from "../../store/thunkCreators";
+import './books.css';
+import NewBook from "../newBook/newBook";
 
-    const deleteBook = (e) => {
-        const targetId = e.target.value
-        const newBookList = books.filter((e) => {
-            if (e.id !== targetId) {
-                return e
-            }
-        });
-        setBooks(newBookList);
+const Books = (props) => {
+    const { booksList, currentBook } = props
+    const [showEdit, setShowEdit] = useState(false)
+    const [addBook, setAddBook] = useState(false)
+
+    const addBookToggle = () => {
+        setAddBook(prev => !prev);
     }
 
-    const editBook = (e) => {
-        const bookId = e.currentTarget.id
-        const foundBook = books.filter(e => e.id === bookId)
-        setCurrentBook(foundBook[0])
+    const editBook = async (e) => {
+        console.log('yes    ')
+        const bookId = e.currentTarget.value
+        const foundBook = booksList.filter(e => e.id === bookId)
+        await props.editSelectedBook(foundBook[0])
         setShowEdit(prev => !prev)
     }
 
+    const deleteBook = async (e) => {
+        e.stopPropagation();
+        const targetId = e.target.value
+        const newBookList = booksList.filter((e) => {
+            return e.id !== targetId ? e : null
+        });
+        await props.deleteBooks(newBookList)
+    }
+
     return (
-        !showEdit ? books.map(e => {
-            return (
-                <div key={e.id} id={e.id} onClick={e => editBook(e)}>
-                    <div>
-                        <h1>{e.title}</h1>
-                        <div>{e.price}</div>
-                        <div>{e.category}</div>
-                        <button value={e.id} onClick={e => deleteBook(e)}>Test</button>
-                    </div>
-
-                </div>
-            )
-        }) : <Edit editBook={currentBook} />
-
+        <div className='parent'>
+            {!addBook ? <button onClick={addBookToggle}>Add Book</button> : <NewBook toggle={{ setAddBook }} />}
+            <div className='child'>
+                {!showEdit ? booksList.map(books => {
+                    return (
+                        <div className='books' key={books.id} id={books.id}>
+                            <h4>{books.title}</h4>
+                            <div>${books.price}</div>
+                            <div>{books.category}</div>
+                            <button className='deleteButton' value={books.id} onClick={e => deleteBook(e)}>Remove</button>
+                            <button className='editButton' value={books.id} onClick={e => editBook(e)}>Edit</button>
+                        </div>
+                    )
+                }) : <Edit editBook={{ currentBook, setShowEdit }} />}
+            </div>
+        </div>
     )
 }
 
-export default Books
+const mapStateToProps = (state) => {
+    return {
+        booksList: state.booksList,
+        currentBook: state.currentBook
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        deleteBooks: (newBookList) => {
+            dispatch(deleteBooks(newBookList));
+        },
+        editSelectedBook: (currentBook) => {
+            dispatch(editSelectedBook(currentBook))
+        }
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Books);

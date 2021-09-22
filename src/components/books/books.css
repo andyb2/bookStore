@@ -1,0 +1,83 @@
+.parent {
+  margin: 30px 0;
+  /* text-align: center; */
+}
+
+.child {
+  display: flex;
+  flex-wrap: wrap;
+  /* width: 50%; */
+  padding: 100px;
+  /* text-align: center; */
+
+  margin: 0 auto;
+  /* min-width: 25%; */
+}
+
+.books {
+  position: relative;
+  border: 1px solid black;
+  flex: 1 0 25%;
+  text-align: center;
+  z-index: 1;
+  height: 150px;
+  /* max-width: 30%; */
+  max-width: 100px;
+  /* width: 25px; */
+  margin: 10px;
+}
+h4 {
+  /* position: fixed; */
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.deleteButton {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background: rgb(2, 2, 2);
+  font-family: Georgia, "Times New Roman", Times, serif;
+  line-height: 25px;
+  border: rgb(0, 0, 0);
+  border-radius: 10px 10px 10px 10px;
+  color: white;
+}
+
+.editButton {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: rgb(2, 2, 2);
+  font-family: Georgia, "Times New Roman", Times, serif;
+  line-height: 25px;
+  border: rgb(0, 0, 0);
+  border-radius: 10px 10px 10px 10px;
+  color: white;
+}
+
+@media (max-width: 1080px) {
+  .books {
+    flex: 1 0 33%;
+  }
+}
+
+@media (max-width: 750px) {
+  .books {
+    flex: 1 0 33%;
+    /* padding: 5%; */
+  }
+  .child {
+    padding: 0px;
+    width: 75%;
+  }
+}
+
+@media (max-width: 450px) {
+  .books {
+    flex: 1 0 100%;
+  }
+  .child {
+    padding-right: 20px;
+  }
+}
