@@ -1,35 +1,53 @@
-.parent {
-  margin: 30px 0;
-  /* text-align: center; */
+* {
+  box-sizing: border-box;
 }
 
-.child {
+.parent {
+  margin: 25vh auto 0;
+  border: 1px solid black;
+  width: 75%;
+  padding: 1.5em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  /* align-items: center; */
+  /* align-content: center; */
+  gap: 1em;
+}
+
+/* .child {
   display: flex;
   flex-wrap: wrap;
   /* width: 50%; */
-  padding: 100px;
-  /* text-align: center; */
+/* padding: 100px; */
+/* text-align: center; */
 
-  margin: 0 auto;
-  /* min-width: 25%; */
-}
+/* margin: 0 auto; */
+/* min-width: 25%; */
+/* }  */
 
 .books {
+  /* background: burlywood; */
   position: relative;
   border: 1px solid black;
-  flex: 1 0 25%;
+  padding: 3.5em;
+  width: 15%;
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
   text-align: center;
-  z-index: 1;
-  height: 150px;
-  /* max-width: 30%; */
-  max-width: 100px;
-  /* width: 25px; */
-  margin: 10px;
 }
 h4 {
   /* position: fixed; */
   margin-top: 0;
   margin-bottom: 0;
+}
+
+.addBook {
+  /* position: absolute; */
+  margin: auto;
+  padding: 1.5em;
 }
 
 .deleteButton {
@@ -54,30 +72,4 @@ h4 {
   border: rgb(0, 0, 0);
   border-radius: 10px 10px 10px 10px;
   color: white;
-}
-
-@media (max-width: 1080px) {
-  .books {
-    flex: 1 0 33%;
-  }
-}
-
-@media (max-width: 750px) {
-  .books {
-    flex: 1 0 33%;
-    /* padding: 5%; */
-  }
-  .child {
-    padding: 0px;
-    width: 75%;
-  }
-}
-
-@media (max-width: 450px) {
-  .books {
-    flex: 1 0 100%;
-  }
-  .child {
-    padding-right: 20px;
-  }
 }

@@ -15,7 +15,6 @@ const Books = (props) => {
     }
 
     const editBook = async (e) => {
-        console.log('yes    ')
         const bookId = e.currentTarget.value
         const foundBook = booksList.filter(e => e.id === bookId)
         await props.editSelectedBook(foundBook[0])
@@ -33,20 +32,20 @@ const Books = (props) => {
 
     return (
         <div className='parent'>
-            {!addBook ? <button onClick={addBookToggle}>Add Book</button> : <NewBook toggle={{ setAddBook }} />}
-            <div className='child'>
-                {!showEdit ? booksList.map(books => {
-                    return (
-                        <div className='books' key={books.id} id={books.id}>
-                            <h4>{books.title}</h4>
-                            <div>${books.price}</div>
-                            <div>{books.category}</div>
-                            <button className='deleteButton' value={books.id} onClick={e => deleteBook(e)}>Remove</button>
-                            <button className='editButton' value={books.id} onClick={e => editBook(e)}>Edit</button>
-                        </div>
-                    )
-                }) : <Edit editBook={{ currentBook, setShowEdit }} />}
-            </div>
+            {!addBook ? <button className="addBook" onClick={addBookToggle}>Add Book</button> : <NewBook toggle={{ setAddBook }} />}
+            {/* <div className='child'> */}
+            {!showEdit ? booksList.map(books => {
+                return (
+                    <div className='books' key={books.id} id={books.id}>
+                        <h4>{books.title}</h4>
+                        <div>${books.price}</div>
+                        <div>{books.category}</div>
+                        <button className='deleteButton' value={books.id} onClick={e => deleteBook(e)}>Remove</button>
+                        <button className='editButton' value={books.id} onClick={e => editBook(e)}>Edit</button>
+                    </div>
+                )
+            }) : <Edit editBook={{ currentBook, setShowEdit }} />}
+            {/* </div> */}
         </div>
     )
 }

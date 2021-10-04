@@ -1,12 +1,12 @@
 import React from 'react';
-import './App.css';
 import { BrowserRouter, Route } from 'react-router-dom'
 import Books from './components/books/books';
+import Register from './pages/register/register';
 
 function App() {
   return (
     <BrowserRouter>
-      <Route path='/' component={Books}></Route>
+      <Route path='/' component={Register}></Route>
     </BrowserRouter>
   );
 }
