@@ -3,54 +3,55 @@
 }
 
 .parent {
-  margin: 25vh auto 0;
-  border: 1px solid black;
-  width: 75%;
-  padding: 1.5em;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: flex-start;
-  /* align-items: center; */
-  /* align-content: center; */
-  gap: 1em;
+  justify-content: center;
+  margin: 0 auto;
+  width: 80%;
+  padding: 5rem 0 0 0;
+  gap: 1rem;
 }
-
-/* .child {
-  display: flex;
-  flex-wrap: wrap;
-  /* width: 50%; */
-/* padding: 100px; */
-/* text-align: center; */
-
-/* margin: 0 auto; */
-/* min-width: 25%; */
-/* }  */
 
 .books {
-  /* background: burlywood; */
-  position: relative;
-  border: 1px solid black;
-  padding: 3.5em;
-  width: 15%;
-  height: 30vh;
+  border: 1px solid rgb(209, 209, 209);
+  border-radius: 10px;
+  padding: 1rem;
+  /* width: 20%; */
+  min-height: 275px;
+  max-width: 300px;
+  min-width: 300px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
+  overflow: hidden;
 }
-h4 {
-  /* position: fixed; */
-  margin-top: 0;
-  margin-bottom: 0;
+.books h4 {
+  margin: 0;
+  /* padding: 1rem; */
+  /* margin-top: 0;
+  margin-bottom: 0; */
+  /* margin: auto 0; */
+}
+
+.books:hover {
+  /* opacity: 0.8; */
+  transform: scale(1.02);
+  border: 1px solid rgb(187, 187, 187);
+}
+
+.books:active {
+  cursor: grabbing;
 }
 
 .addBook {
-  /* position: absolute; */
   margin: auto;
   padding: 1.5em;
 }
 
-.deleteButton {
+/* .deleteButton {
   position: absolute;
   right: 0;
   bottom: 0;
@@ -72,4 +73,4 @@ h4 {
   border: rgb(0, 0, 0);
   border-radius: 10px 10px 10px 10px;
   color: white;
-}
+} */

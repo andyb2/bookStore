@@ -12,14 +12,26 @@ export const editBookInfo = (state, payload) => {
     return stateCopy
 }
 
-export const deleteBook = (state, payload) => {
-    const newState = payload
-    return { booksList: newState }
-}
-
 export const newBookEntry = (state, payload) => {
     const stateCopy = { ...state }
     stateCopy.booksList.push(payload)
-    console.log(payload.id)
-    return stateCopy
+    return { ...stateCopy }
+}
+
+export const bookQuery = (state, payload) => {
+    const stateCopy = { ...state };
+    const lowerCaseSearched = payload.toLowerCase();
+    const filteredBookList = stateCopy.booksList.filter(book => book.title.toLowerCase().includes(lowerCaseSearched));
+    return { ...stateCopy, search: [...filteredBookList] }
+}
+
+export const removeBookFromList = (state, payload) => {
+    const stateCopy = { ...state }
+    const nonRemovedBooks = stateCopy.booksList.filter(book => book.id !== payload.id);
+    if (stateCopy.search) {
+        const nonRemovedBooksSearch = stateCopy.search.filter(book => book.id !== payload.id)
+        stateCopy.search = nonRemovedBooksSearch
+    }
+    stateCopy.booksList = nonRemovedBooks
+    return { ...stateCopy }
 }

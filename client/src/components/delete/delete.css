@@ -1,0 +1,17 @@
+/* .delete-container {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid black;
+} */
+
+.trash-can {
+  top: 70px;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  width: 10%;
+}
+
+.trash-can:hover {
+  transform: scale(1.1);
+}

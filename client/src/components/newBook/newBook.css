@@ -1,21 +1,23 @@
-.addBook-modal {
+/* .addBook-modal {
+  position: fixed;
   display: flex;
   flex-direction: column;
-  /* height: 10vh; */
-  position: fixed;
+  width: 30%;
   text-align: center;
-  z-index: 10;
-  top: 2em;
+  margin: 100px 500px; */
+/* max-height: 430px; */
+/* z-index: 10; */
+/* top: 2em;
   bottom: 25em;
   left: 2em;
-  right: 2em;
-  background: white;
+  right: 2em; */
+/* background: white;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-  padding: 2.5rem;
-}
+  padding: 1rem; */
+/* } */
 
-.addBook-input {
-  width: 85%;
+/* .addBook-input {
+  width: 40%;
   margin: 0 auto;
   resize: none;
 }
@@ -23,3 +25,24 @@
 .addBook-inputHeader {
   margin: 0;
 }
+
+.close-modal:hover {
+  cursor: pointer;
+  opacity: 0.3;
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.save-modal-btn {
+  border: none;
+  width: 10%;
+  margin-top: 10px;
+}
+
+.save-modal-btn:hover {
+  cursor: pointer;
+} */

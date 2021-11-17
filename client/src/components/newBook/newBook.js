@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid'
 
 
 const NewBook = (props) => {
-    const { setAddBook } = props.toggle;
+    // const { setAddBook } = props.toggle;
 
     const addNewBook = async (e) => {
         e.preventDefault();
@@ -16,14 +16,18 @@ const NewBook = (props) => {
             price: e.target.price.value
         }
         await props.createNewBook(newBookInfo)
-        setAddBook(false)
+        // setAddBook(false)
     };
 
+    const closeModal = () => {
+        // setAddBook(false)
+    }
     return (
         // add book modal
         <div className='addBook-modal'>
+            <div className="close-modal" onClick={closeModal}>X</div>
             <h2 className='addBook-header'>Add a new book!</h2>
-            <form onSubmit={addNewBook}>
+            <form className="modal-form" onSubmit={addNewBook}>
                 <h5 className='addBook-inputHeader'>Title</h5>
                 <textarea
                     className='addBook-input'
@@ -36,13 +40,13 @@ const NewBook = (props) => {
                     name='category'
                     type='text'
                 ></textarea>
-                <h5 className='addBook-inputHeader'>category</h5>
+                <h5 className='addBook-inputHeader'>Category</h5>
                 <textarea
                     className='addBook-input'
                     name='price'
                     type='text'
                 ></textarea>
-                <button type="submit">save</button>
+                <button className="save-modal-btn" type="submit">save</button>
             </form>
         </div >
     )

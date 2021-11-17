@@ -1,19 +1,21 @@
-import { userRegistration } from './thunkCreators'
+import { userRegistration } from '../../store/thunkCreators';
+import { connect } from 'react-redux';
 
 const Register = () => {
 
-    const registerUser = (event) => {
-
+    const registerUser = async (event) => {
         if (event.target.password.value === event.target.retype.value) {
             const userInfo = {
                 email: event.target.email.value,
                 password: event.target.password.value
             }
             console.log(`Success!`)
+            await userRegistration(userInfo)
         } else {
             console.error(`Password does not match`)
         }
     }
+
     return (
         <div className="registerParent">
             <h1 className="registerHeader">Register</h1>
@@ -38,8 +40,8 @@ const Register = () => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        register: (userInfo) => {
-            dispatch(register(userInfo))
+        userRegistration: (userInfo) => {
+            dispatch(userRegistration(userInfo))
         }
     }
 }
